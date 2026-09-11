@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+
+<head>
+
+
+   <meta charset="UTF-8">
+
+
+   <meta name="viewport"
+         content="width=device-width, initial-scale=1.0">
+
+
+   <title>Siria roupas</title>
+
+
+
+
+   <style>
+
+
+       /* =========================
+          CORES DOS DOIS TEMAS
+       ========================== */
+
+
+       :root {
+
+
+           /* Estado inicial */
+           --tema: claro;
+
+
+
+
+           /* Tema claro */
+
+
+           --fundo-claro: #f4f7f2;
+           --superficie-clara: #fff7f1;
+
+
+           --texto-claro: #1a6409;
+           --texto-secundario-claro: #216d0e;
+
+
+           --primaria-clara: #32630b;
+           --primaria-forte-clara: #c44646;
+
+
+           --borda-clara: #c44646;
+
+
+
+
+           /* Tema escuro */
+
+
+           --fundo-escuro: #303833;
+           --superficie-escura: #3d3834;
+
+
+           --texto-escuro: #cff0ba;
+           --texto-secundario-escuro: #abcfa4;
+
+
+           --primaria-escura: #c5f7b8;
+           --primaria-forte-escura: #852222;
+
+
+           --borda-escura: #852222;
+
+
+       }
+
+
+
+
+       /* =========================
+          CHECKBOX MARCADO
+
+
+          Se o HTML possui o
+          checkbox #tema marcado,
+          alteramos a variável.
+       ========================== */
+
+
+       :root:has(#tema:checked) {
+
+
+           --tema: escuro;
+
+
+       }
+
+
+
+
+       /* =========================
+          CONFIGURAÇÕES GERAIS
+       ========================== */
+
+
+       * {
+           box-sizing: border-box;
+       }
+
+
+       html {
+           scroll-behavior: smooth;
+       }
+
+
+
+
+       body {
+
+
+           margin: 0;
+
+
+           font-family:
+               Arial,
+               Helvetica,
+               sans-serif;
+
+
+           line-height: 1.6;
+
+
+
+
+           /*
+            * FALLBACK
+            *
+            * Navegadores que não entendem
+            * if() permanecem no tema claro.
+            */
+
+
+           background-color:
+               var(--fundo-claro);
+
+
+           color:
+               var(--texto-claro);
+
+
+
+
+           /*
+            * NOVO CSS if()
+            */
+
+
+           background-color: if(
+               style(--tema: escuro):
+                   var(--fundo-escuro);
+               else:
+                   var(--fundo-claro);
+           );
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--texto-escuro);
+               else:
+                   var(--texto-claro);
+           );
+
+
+
+
+           transition:
+               background-color 0.3s,
+               color 0.3s;
+
+
+       }
+
+
+
+
+       a {
+           color: inherit;
+       }
+
+
+
+
+       /* =========================
+          CHECKBOX
+       ========================== */
+
+
+       /*
+        * O checkbox continua existindo,
+        * mas fica visualmente escondido.
+        */
+
+
+       #tema {
+
+
+           position: absolute;
+
+
+           width: 1px;
+           height: 1px;
+
+
+           opacity: 0;
+
+
+       }
+
+
+
+
+       /* =========================
+          HEADER
+       ========================== */
+
+
+       header {
+
+
+           /* Fallback */
+
+
+           background-color:
+               var(--superficie-clara);
+
+
+           border-bottom:
+               1px solid var(--borda-clara);
+
+
+
+
+           /* CSS if() */
+
+
+           background-color: if(
+               style(--tema: escuro):
+                   var(--superficie-escura);
+               else:
+                   var(--superficie-clara);
+           );
+
+
+           border-color: if(
+               style(--tema: escuro):
+                   var(--borda-escura);
+               else:
+                   var(--borda-clara);
+           );
+
+
+
+
+           padding: 25px;
+
+
+           text-align: center;
+
+
+       }
+
+
+
+
+       header h1 {
+
+
+           color:
+               var(--primaria-clara);
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--primaria-escura);
+               else:
+                   var(--primaria-clara);
+           );
+
+
+
+
+           margin: 0;
+
+
+       }
+
+
+
+
+       header p {
+
+
+           color:
+               var(--texto-secundario-claro);
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--texto-secundario-escuro);
+               else:
+                   var(--texto-secundario-claro);
+           );
+
+
+
+
+           margin-bottom: 0;
+
+
+       }
+
+
+
+
+       /* =========================
+          NAV
+       ========================== */
+
+
+       nav {
+
+
+           background-color:
+               var(--primaria-forte-clara);
+
+
+           background-color: if(
+               style(--tema: escuro):
+                   var(--primaria-forte-escura);
+               else:
+                   var(--primaria-forte-clara);
+           );
+
+
+
+
+           padding: 12px 20px;
+
+
+
+
+           display: flex;
+
+
+           justify-content: center;
+
+
+           align-items: center;
+
+
+           flex-wrap: wrap;
+
+
+           gap: 20px;
+
+
+       }
+
+
+
+
+       nav a {
+
+
+           color: white;
+
+
+           text-decoration: none;
+
+
+           font-weight: bold;
+
+
+       }
+
+
+
+
+       nav a:hover {
+
+
+           text-decoration: underline;
+
+
+       }
+
+
+
+
+       /* =========================
+          BOTÃO / LABEL
+       ========================== */
+
+
+       .botao-tema {
+
+
+           padding: 8px 16px;
+
+
+           border:
+               2px solid white;
+
+
+           border-radius: 20px;
+
+
+           background-color:
+               transparent;
+
+
+           color: white;
+
+
+           font-size: 15px;
+
+
+           cursor: pointer;
+
+
+       }
+
+
+
+
+       .botao-tema:hover {
+
+
+           background-color: white;
+
+
+           color: #245748;
+
+
+       }
+
+
+
+
+       /*
+        * Inicialmente mostramos:
+        * "Tema escuro"
+        */
+
+
+       .texto-claro {
+
+
+           display: none;
+
+
+       }
+
+
+
+
+       .texto-escuro {
+
+
+           display: inline;
+
+
+       }
+
+
+
+
+       /*
+        * Quando o checkbox estiver
+        * marcado, trocamos os textos.
+        */
+
+
+       :root:has(#tema:checked)
+       .texto-claro {
+
+
+           display: inline;
+
+
+       }
+
+
+
+
+       :root:has(#tema:checked)
+       .texto-escuro {
+
+
+           display: none;
+
+
+       }
+
+
+
+
+       /* =========================
+          MAIN
+       ========================== */
+
+
+       main {
+
+
+           width: min(1100px, 90%);
+
+
+           margin: 40px auto;
+
+
+       }
+
+
+
+
+       /* =========================
+          INTRODUÇÃO
+       ========================== */
+
+
+       .introducao {
+
+
+           /* Fallback */
+
+
+           background-color:
+               var(--superficie-clara);
+
+
+           border:
+               1px solid var(--borda-clara);
+
+
+
+
+           /* if() */
+
+
+           background-color: if(
+               style(--tema: escuro):
+                   var(--superficie-escura);
+               else:
+                   var(--superficie-clara);
+           );
+
+
+           border-color: if(
+               style(--tema: escuro):
+                   var(--borda-escura);
+               else:
+                   var(--borda-clara);
+           );
+
+
+
+
+           padding: 35px;
+
+
+           border-radius: 12px;
+
+
+           margin-bottom: 40px;
+
+
+           box-shadow:
+               0 5px 18px
+               rgba(0, 0, 0, 0.08);
+
+
+       }
+
+
+
+
+       .introducao h2 {
+
+
+           color:
+               var(--primaria-clara);
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--primaria-escura);
+               else:
+                   var(--primaria-clara);
+           );
+
+
+
+
+           margin-top: 0;
+
+
+       }
+
+
+
+
+       /* =========================
+          SEÇÃO DOS CARDS
+       ========================== */
+
+
+       .secao-cards h2 {
+
+
+           color:
+               var(--primaria-clara);
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--primaria-escura);
+               else:
+                   var(--primaria-clara);
+           );
+
+
+
+
+           text-align: center;
+
+
+           margin-bottom: 30px;
+
+
+       }
+
+
+
+
+       .cards {
+
+
+           display: grid;
+
+
+           grid-template-columns:
+               repeat(
+                   auto-fit,
+                   minmax(250px, 1fr)
+               );
+
+
+           gap: 25px;
+
+
+       }
+
+
+
+
+       /* =========================
+          CARD
+       ========================== */
+
+
+       .card {
+
+
+           /* Fallback */
+
+
+           background-color:
+               var(--superficie-clara);
+
+
+           border:
+               1px solid var(--borda-clara);
+
+
+
+
+           /* if() */
+
+
+           background-color: if(
+               style(--tema: escuro):
+                   var(--superficie-escura);
+               else:
+                   var(--superficie-clara);
+           );
+
+
+           border-color: if(
+               style(--tema: escuro):
+                   var(--borda-escura);
+               else:
+                   var(--borda-clara);
+           );
+
+
+
+
+           border-radius: 12px;
+
+
+           overflow: hidden;
+
+
+           box-shadow:
+               0 5px 18px
+               rgba(0, 0, 0, 0.08);
+
+
+
+
+           transition:
+               transform 0.2s,
+               background-color 0.3s;
+
+
+       }
+
+
+
+
+       .card:hover {
+
+
+           transform:
+               translateY(-5px);
+
+
+       }
+
+
+
+
+       .card img {
+
+
+           display: block;
+
+
+           width: 100%;
+
+
+           height: 220px;
+
+
+           object-fit: cover;
+
+
+       }
+
+
+
+
+       .card-conteudo {
+
+
+           padding: 20px;
+
+
+       }
+
+
+
+
+       .card h3 {
+
+
+           color:
+               var(--primaria-clara);
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--primaria-escura);
+               else:
+                   var(--primaria-clara);
+           );
+
+
+
+
+           margin-top: 0;
+
+
+       }
+
+
+
+
+       .card p {
+
+
+           color:
+               var(--texto-secundario-claro);
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--texto-secundario-escuro);
+               else:
+                   var(--texto-secundario-claro);
+           );
+
+
+       }
+
+
+
+
+       /* =========================
+          SOBRE
+       ========================== */
+
+
+       .sobre {
+
+
+           /* Fallback */
+
+
+           background-color:
+               var(--superficie-clara);
+
+
+           border:
+               1px solid var(--borda-clara);
+
+
+
+
+           /* if() */
+
+
+           background-color: if(
+               style(--tema: escuro):
+                   var(--superficie-escura);
+               else:
+                   var(--superficie-clara);
+           );
+
+
+           border-color: if(
+               style(--tema: escuro):
+                   var(--borda-escura);
+               else:
+                   var(--borda-clara);
+           );
+
+
+
+
+           border-radius: 12px;
+
+
+           padding: 30px;
+
+
+           margin-top: 40px;
+
+
+       }
+
+
+
+
+       .sobre h2 {
+
+
+           color:
+               var(--primaria-clara);
+
+
+           color: if(
+               style(--tema: escuro):
+                   var(--primaria-escura);
+               else:
+                   var(--primaria-clara);
+           );
+
+
+
+
+           margin-top: 0;
+
+
+       }
+
+
+
+
+       /* =========================
+          FOOTER
+       ========================== */
+
+
+       footer {
+
+
+           margin-top: 50px;
+
+
+           padding: 30px;
+
+
+           text-align: center;
+
+
+
+
+           background-color:
+               var(--primaria-forte-clara);
+
+
+           background-color: if(
+               style(--tema: escuro):
+                   var(--primaria-forte-escura);
+               else:
+                   var(--primaria-forte-clara);
+           );
+
+
+
+
+           color: white;
+
+
+       }
+
+
+
+
+       footer p {
+
+
+           margin: 5px;
+
+
+       }
+
+
+   </style>
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+   <!--
+       CHECKBOX
+
+
+       Ele é quem guarda o estado:
+
+
+       desmarcado = claro
+       marcado   = escuro
+   -->
+
+
+   <input
+       type="checkbox"
+       id="tema">
+
+
+
+
+   <!-- =========================
+        HEADER
+   ========================== -->
+
+
+   <header id="inicio">
+
+
+       <h1>Roupas da Síria</h1>
+
+
+       <p>
+        Roupas tradicionais na Síria
+       </p>
+
+
+   </header>
+
+
+
+
+   <!-- =========================
+        NAVEGAÇÃO
+   ========================== -->
+
+
+   <nav>
+
+
+       <a href="#inicio">
+           Início
+       </a>
+
+
+       <a href="#coalas">
+           Roupas
+       </a>
+
+
+       <a href="#sobre">
+           Sobre
+       </a>
+
+
+
+
+       <!--
+           LABEL FUNCIONA COMO BOTÃO
+
+
+           Como "for" aponta para o
+           checkbox #tema, clicar aqui
+           marca/desmarca o checkbox.
+       -->
+
+
+       <label
+           for="tema"
+           class="botao-tema">
+
+
+
+
+           <span class="texto-escuro">
+               🌙 Tema escuro
+           </span>
+
+
+
+
+           <span class="texto-claro">
+               ☀️ Tema claro
+           </span>
+
+
+
+
+       </label>
+
+
+   </nav>
+
+
+
+
+   <!-- =========================
+        MAIN
+   ========================== -->
+
+
+   <main>
+
+
+
+
+       <!-- INTRODUÇÃO -->
+
+
+       <section class="introducao">
+
+
+           <h2>
+               Conheça as roupas da siria
+           </h2>
+
+
+
+
+           <p>
+            <b>Homens:</b> O traje tradicional inclui as calças largas de pano chamadas shirwal, 
+            acompanhadas por uma camisa, um colete e um cinto, 
+            além do kefiah (lenço na cabeça preso por um cordão). Outra opção comum é a jalabiya
+           </p>
+
+
+
+
+           <p>
+            <b>Mulheres:</b> Vestidos longos tradicionais bordados, como as túnicas estilo galabiya, 
+            destacam-se pela riqueza de cores e detalhes artesanais. 
+            As comunidades curdas na Síria também possuem trajes vibrantes com jaquetas bordadas e véus distintivos
+           </p>
+
+
+       </section>
+
+
+
+
+       <!-- CARDS -->
+
+
+       <section
+           id="coalas"
+           class="secao-cards">
+
+
+
+
+           <h2>
+               Exemplo de roupas
+           </h2>
+
+
+
+
+           <div class="cards">
+
+
+
+
+               <!-- CARD 1 -->
+
+
+               <article class="card">
+
+
+
+
+                   <img
+                       src="https://img.magnific.com/fotos-premium/retrato-tradicional-de-homens-turcos-com-roupas-culturais-e-padroes-etnicos-detalhados_1300330-1130.jpg?semt=ais_hybrid&w=740&q=80"
+                       alt="Roupa masculina de um siriano">
+
+
+
+
+                   <div class="card-conteudo">
+
+
+                       <h3>
+                           Roupa Masculina
+                       </h3>
+
+
+
+
+                       <p>
+                        <b>Shirwal:</b> Calças largas e frouxas na parte superior que se estreitam nas canelas, ideais para o clima e conforto.
+                        </p>
+                        <p>
+                        <b>Colete e Camisa:</b> Uma camisa de manga longa combinada com um colete tradicional 
+                        (frequentemente bordado ou com detalhes texturizados) e uma faixa na cintura.
+                       </p>
+
+
+                   </div>
+
+
+
+
+               </article>
+
+
+
+
+               <!-- CARD 2 -->
+
+
+               <article class="card">
+
+
+
+
+                   <img
+                       src="https://i.pinimg.com/236x/2d/d1/41/2dd141c99953eaada3b2c95b73613ec6.jpg"
+                       alt="Roupa feminina de um siriano">
+
+
+
+
+                   <div class="card-conteudo">
+
+
+                       <h3>
+                           Coala curioso
+                       </h3>
+
+
+
+
+                       <p>
+                        <b>Galabiyeh e Túnicas:</b> Vestidos longos e retos, 
+                        frequentemente chamados de galabiyeh, com mangas compridas e caimento solto para garantir conforto e modéstia
+                       </p>
+                       <p>
+                        <b>Bordados e Cores:</b> As peças tradicionais costumam apresentar detalhes elaborados à mão, 
+                        com fios coloridos ou metálicos (como ouro e prata) no peito, nas mangas e nas barras, variando conforme a região de origem.
+                       </p>
+
+
+                   </div>
+
+
+
+
+               </article>
+
+
+
+
+               <!-- CARD 3 -->
+
+
+               <article class="card">
+
+
+
+
+                   <img
+                       src="https://i.redd.it/q776xbfea4cf1.jpeg"
+                       alt="roupas de casamento">
+
+
+
+
+                   <div class="card-conteudo">
+
+
+                       <h3>
+                           Roupas de casamento
+                       </h3>
+
+
+
+
+                       <p>
+                           Lorem ipsum dolor sit amet,
+                           consectetur adipisicing elit.
+                           Dolorem laudantium consequatur
+                           reprehenderit fugiat.
+                       </p>
+
+
+                   </div>
+
+
+
+
+               </article>
+
+
+
+
+           </div>
+
+
+
+
+       </section>
+
+
+
+
+       <!-- SOBRE -->
+
+
+       <section
+           id="sobre"
+           class="sobre">
+
+
+
+
+           <h2>
+               Sobre este projeto
+           </h2>
+
+
+
+
+           <p>
+               Lorem ipsum dolor sit amet consectetur
+               adipisicing elit. Dignissimos minima quasi
+               molestiae nulla nobis recusandae magni.
+           </p>
+
+
+
+
+           <p>
+               Lorem ipsum dolor sit amet consectetur
+               adipisicing elit. Explicabo quas accusantium
+               delectus assumenda quae accusamus.
+           </p>
+
+
+
+
+       </section>
+
+
+
+
+   </main>
+
+
+
+
+   <!-- =========================
+        FOOTER
+   ========================== -->
+
+
+   <footer>
+
+
+       <p>
+           &copy; 2026 Mundo dos Coalas
+       </p>
+
+
+       <p>
+           Lorem ipsum dolor sit amet.
+       </p>
+
+
+   </footer>
+
+
+
+
+</body>
+
+
+</html>
